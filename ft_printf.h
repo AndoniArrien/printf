@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/06 12:37:34 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:08:13 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 
 int		ft_printf(char const *s, ...);
 
+void	ft_putchar(char c);
 void	ft_putstr(char const *str);
+int		ft_strlen(char *str);
+void	ft_putptr(void const *ptr);
+void	ft_putnbr(int nb);
+void	ft_putnbr_base(int nbr, char *base);
 
 #endif
