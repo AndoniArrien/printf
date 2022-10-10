@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:03:10 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/07 12:44:01 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:38:57 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	main(void)
 {
-	
+	char	*a = "a";
+	ft_printf("RETURN = %d\n", ft_printf("%p\n", &a));
+	printf("RETURN = %d\n", printf("%p\n", &a));
 	return (0);
 }

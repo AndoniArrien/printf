@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/07 13:08:13 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:49:45 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 
 # include <stdio.h>
 # include <unistd.h>
-#include <stdarg.h> // va_start ,va_arg ,va_copy ,va_end
+# include <stdarg.h>
 
 int		ft_printf(char const *s, ...);
-
-void	ft_putchar(char c);
-void	ft_putstr(char const *str);
+void	ft_putchar(char c, int *len);
+void	ft_putstr(char const *str, int *len);
 int		ft_strlen(char *str);
-void	ft_putptr(void const *ptr);
-void	ft_putnbr(int nb);
-void	ft_putnbr_base(int nbr, char *base);
+void	ft_putptr(uintptr_t ptr, int *len);
+void	ft_putnbr(int nb, int *len);
+void	ft_putu(unsigned int nb, int *len);
+void	ft_putnbr_base(unsigned int nbr, char *base, int *len);
+void	ft_putnbr_base_ptr(uintptr_t nbr, char *base, int *len);
 
 #endif
