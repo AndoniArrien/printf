@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:03:10 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/10 13:38:57 by aarrien-         ###   ########.fr       */
+/*   Created: 2022/10/06 12:18:07 by aarrien-          #+#    #+#             */
+/*   Updated: 2022/10/11 09:33:33 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../incs/ft_printf.h"
 
-int	main(void)
+void	ft_putu(unsigned int nb, int *len)
 {
-	char	*a = "a";
-	ft_printf("RETURN = %d\n", ft_printf("%p\n", &a));
-	printf("RETURN = %d\n", printf("%p\n", &a));
-	return (0);
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10, len);
+		ft_putnbr(nb % 10, len);
+	}
+	else if (nb >= 0)
+		ft_putchar(nb + 48, len);
 }

@@ -6,11 +6,11 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:18:07 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/10 13:49:34 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/10/11 09:33:40 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../incs/ft_printf.h"
 
 void	ft_convert(va_list ptr, char const *s, int *len)
 {
@@ -19,7 +19,7 @@ void	ft_convert(va_list ptr, char const *s, int *len)
 	else if (*s == 's')
 		ft_putstr(va_arg(ptr, char *), len);
 	else if (*s == 'p')
-		ft_putptr(va_arg(ptr, uintptr_t), len);
+		ft_putptr(va_arg(ptr, unsigned long long int), len);
 	else if (*s == 'd')
 		ft_putnbr(va_arg(ptr, int), len);
 	else if (*s == 'i')
