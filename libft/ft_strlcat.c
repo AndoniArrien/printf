@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:03:10 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/11 09:57:53 by aarrien-         ###   ########.fr       */
+/*   Created: 2022/08/30 09:25:38 by aarrien-          #+#    #+#             */
+/*   Updated: 2022/09/07 12:10:44 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	ft_printf("RETURN = %d\n", ft_printf("PERSONAL %p\n", (void *)-14523));
-	return (0);
+	size_t	i;
+	size_t	dstlen;
+
+	i = 0;
+	dstlen = ft_strlen(dst);
+	if (dstsize <= dstlen)
+		return (ft_strlen(src) + dstsize);
+	while (src[i] && i < (dstsize - dstlen - 1))
+	{
+		dst[dstlen + i] = src[i];
+		i++;
+	}
+	dst[dstlen + i] = '\0';
+	return (dstlen + ft_strlen(src));
 }

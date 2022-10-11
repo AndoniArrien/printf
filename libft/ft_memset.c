@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:03:10 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/11 09:57:53 by aarrien-         ###   ########.fr       */
+/*   Created: 2022/08/30 09:25:38 by aarrien-          #+#    #+#             */
+/*   Updated: 2022/08/30 12:12:50 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	ft_printf("RETURN = %d\n", ft_printf("PERSONAL %p\n", (void *)-14523));
-	return (0);
+	size_t	i;
+	char	*src;
+
+	src = (char *)b;
+	i = 0;
+	while (i < len)
+	{
+		src[i] = c;
+		i++;
+	}
+	return (src);
 }

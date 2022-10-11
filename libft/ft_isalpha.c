@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:03:10 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/11 09:57:53 by aarrien-         ###   ########.fr       */
+/*   Created: 2022/08/30 09:25:38 by aarrien-          #+#    #+#             */
+/*   Updated: 2022/08/30 10:08:12 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_isalpha(int c)
 {
-	ft_printf("RETURN = %d\n", ft_printf("PERSONAL %p\n", (void *)-14523));
+	if (c >= 'A' && c <= 'Z')
+		return (1);
+	else if (c >= 'a' && c <= 'z')
+		return (1);
 	return (0);
 }

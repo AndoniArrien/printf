@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:03:10 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/11 09:57:53 by aarrien-         ###   ########.fr       */
+/*   Created: 2022/08/30 09:25:38 by aarrien-          #+#    #+#             */
+/*   Updated: 2022/09/28 12:18:08 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+t_list	*ft_lstlast(t_list *lst)
 {
-	ft_printf("RETURN = %d\n", ft_printf("PERSONAL %p\n", (void *)-14523));
-	return (0);
+	t_list	*temp;
+
+	temp = lst;
+	if (!lst)
+		return (NULL);
+	while (temp->next != NULL)
+		temp = temp->next;
+	return (temp);
 }

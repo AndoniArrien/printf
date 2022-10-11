@@ -1,19 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:03:10 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/11 09:57:53 by aarrien-         ###   ########.fr       */
+/*   Created: 2022/08/30 09:25:38 by aarrien-          #+#    #+#             */
+/*   Updated: 2022/09/22 12:07:00 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	ft_printf("RETURN = %d\n", ft_printf("PERSONAL %p\n", (void *)-14523));
-	return (0);
+	char	*p;
+	size_t	i;
+
+	i = 0;
+	if (len > ft_strlen(s))
+		p = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	else
+		p = malloc(sizeof(char) * (len + 1));
+	if (p == 0)
+		return (NULL);
+	if (start < ft_strlen(s))
+	{
+		while (len > i && s[start + i])
+		{
+			p[i] = s[start + i];
+			i++;
+		}
+	}
+	p[i] = '\0';
+	return (p);
 }

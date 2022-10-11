@@ -1,19 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:03:10 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/11 09:57:53 by aarrien-         ###   ########.fr       */
+/*   Created: 2022/08/30 09:25:38 by aarrien-          #+#    #+#             */
+/*   Updated: 2022/09/20 09:06:59 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	ft_printf("RETURN = %d\n", ft_printf("PERSONAL %p\n", (void *)-14523));
-	return (0);
+	char	*s;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (!(*s1))
+	{
+		s = malloc(1);
+		*s = '\0';
+		return (s);
+	}
+	j = ft_strlen(s1) - 1;
+	while (ft_strchr(set, s1[i]) && s1[i])
+		i++;
+	while (ft_strchr(set, s1[j]) && j > 0)
+		j--;
+	if (j == 0)
+		i = 1;
+	s = ft_substr(s1, i, j - i + 1);
+	return (s);
 }

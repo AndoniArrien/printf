@@ -23,8 +23,10 @@ all: $(NAME)
 
 # Compilar conjuntamente
 $(NAME): $(OBJ)
+	@make bonus -C ./libft
+	@cp libft/libft.a $(NAME)
 	@$(AR) $(NAME) $(OBJ)
-	@echo "ft_printf compiled!"
+	@echo "libftprintf compiled!"
 
 # Compilar objetos individualmente y meterlos al directorio correspodiente mediante una pipe
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
@@ -37,11 +39,13 @@ $(OBJF):
 
 # Eliminar temporales
 clean:
+	@make clean -C ./libft
 	@$(RM) -r $(OBJ_DIR)
 	@echo "Objects and directory cleaned!"
 
 # Eliminar temporales y ejecutable
 fclean: clean
+	@make fclean -C ./libft
 	@$(RM) $(NAME)
 	@echo "Executable cleaned!"
 
