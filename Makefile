@@ -8,7 +8,7 @@ OBJF = objs
 INC = incs
 
 # Ficheros
-SRC_FILES = ft_printf ft_printf_utils ft_print_unsigned ft_print_ptr main
+SRC_FILES = ft_printf ft_printf_utils ft_print_unsigned ft_print_ptr
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
@@ -23,7 +23,8 @@ all: $(NAME)
 
 # Compilar conjuntamente
 $(NAME): $(OBJ)
-	@make bonus -C ./libft
+	@echo "Compiling libft..."
+	@make -C ./libft
 	@cp libft/libft.a $(NAME)
 	@$(AR) $(NAME) $(OBJ)
 	@echo "libftprintf compiled!"
@@ -31,7 +32,7 @@ $(NAME): $(OBJ)
 # Compilar objetos individualmente y meterlos al directorio correspodiente mediante una pipe
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 	@echo "Compiling: $<"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
 # Crear directorio temporal para los obj
 $(OBJF):

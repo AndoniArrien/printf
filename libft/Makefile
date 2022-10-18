@@ -1,33 +1,55 @@
+# Normbre del ejecutable
 NAME = libft.a
-SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memcpy.c ft_memmove.c ft_memchr.c ft_memcmp.c ft_strlen.c \
-		ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupper.c ft_tolower.c \
-		ft_strchr.c ft_strrchr.c ft_strncmp.c ft_strlcpy.c ft_strlcat.c ft_strnstr.c ft_atoi.c \
-		ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
-		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-BSRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstclear.c \
-		ft_lstdelone.c ft_lstiter.c ft_lstmap.c
-OBJS = $(SRC:.c=.o)
-BOBJS = $(OBJS) $(BSRC:.c=.o)
-AR = ar rcs
+# Directorios
+SRC_DIR = srcs/
+OBJ_DIR = objs/
+OBJF = objs
+INC = ../incs
+
+# Ficheros
+SRC_IS = ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
+SRC_LST = ft_lstadd_back_bonus ft_lstadd_front_bonus ft_lstclear_bonus ft_lstdelone_bonus \
+			ft_lstiter_bonus ft_lstlast_bonus ft_lstmap_bonus ft_lstnew_bonus ft_lstsize_bonus
+SRC_MEM = ft_bzero ft_calloc ft_memchr ft_memcmp ft_memmove ft_memset
+SRC_PUT = ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd
+SRC_STR = ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
+			ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
+			ft_strnstr ft_strrchr ft_strtrim ft_substr
+SRC_TO = ft_atoi ft_itoa ft_tolower ft_toupper
+
+SRC_FILES = $(SRC_IS) $(SRC_LST) $(SRC_MEM) $(SRC_PUT) $(SRC_STR) $(SRC_TO)
+SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+
+# Comandos
+CC = gcc
 CFLAGS = -Wall -Werror -Wextra
+RM = rm -f
+AR = ar rcs
 
+# REGLAS #
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+# Compilar conjuntamente
+$(NAME): $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 
-%.o: %.c
-	gcc $(CFLAGS) -c $<
+# Compilar objetos individualmente y meterlos al directorio correspodiente mediante una pipe
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
+	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
-bonus: $(BOBJS)
-	$(AR) $(NAME) $(BOBJS)
+# Crear directorio temporal para los obj
+$(OBJF):
+	@mkdir -p $(OBJ_DIR)
 
+# Eliminar temporales
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	@$(RM) -r $(OBJ_DIR)
 
+# Eliminar temporales y ejecutable
 fclean: clean
-	rm -f $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

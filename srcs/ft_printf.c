@@ -6,11 +6,11 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:18:07 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/11 09:33:40 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/10/15 11:57:32 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_convert(va_list ptr, char const *s, int *len)
 {

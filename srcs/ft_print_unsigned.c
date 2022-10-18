@@ -6,11 +6,11 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:18:07 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/11 09:33:33 by aarrien-         ###   ########.fr       */
+/*   Updated: 2022/10/15 11:57:26 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_putu(unsigned int nb, int *len)
 {
