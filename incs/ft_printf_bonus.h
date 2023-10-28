@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:18:07 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/15 11:57:26 by aarrien-         ###   ########.fr       */
+/*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
+/*   Updated: 2022/10/11 09:01:32 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
-void	ft_putu(unsigned int nb, int *len)
-{
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10, len);
-		ft_putnbr(nb % 10, len);
-	}
-	else if (nb >= 0)
-		ft_putchar(nb + 48, len);
-}
+# include <stdio.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <stdint.h>
+
+int		ft_printf(char const *s, ...);
+
+#endif

@@ -1,16 +1,34 @@
 # Normbre del ejecutable
 NAME = libftprintf.a
+EXECUTABLE = test.out
+
+# Colores
+NC = \033[0m
+BLACK = \033[0;30m
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+BLUE = \033[0;34m
+PURPLE = \033[0;35m
+CYAN = \033[0;36m
+WHITE = \033[0;37m
 
 # Directorios
-SRC_DIR = srcs/
+SRC_DIR = srcs/mandatory/
+SRC_DIR_BONUS = srcs/bonus/
 OBJ_DIR = objs/
 OBJF = objs
 INC = incs
 
 # Ficheros
 SRC_FILES = ft_printf ft_printf_utils ft_print_unsigned ft_print_ptr
+SRC_FILES_BONUS = ft_printf_bonus
+
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+
+SRC_BONUS = $(addprefix $(SRC_DIR_BONUS), $(addsuffix .c, $(SRC_FILES_BONUS)))
+OBJ_BONUS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES_BONUS)))
 
 # Comandos
 CC = gcc
@@ -19,40 +37,56 @@ RM = rm -f
 AR = ar rcs
 
 # REGLAS #
+
+.SILENT:
+
 all: $(NAME)
 
-# Compilar conjuntamente
-$(NAME): $(OBJ)
-	@echo "Compiling libft..."
-	@make -C ./libft
-	@cp libft/libft.a $(NAME)
-	@$(AR) $(NAME) $(OBJ)
-	@echo "libftprintf compiled!"
+$(NAME): $(OBJ) libft
+	$(AR) $(NAME) $(OBJ)
+	echo "$(GREEN)libftprintf compiled!$(NC)"
 
-# Compilar objetos individualmente y meterlos al directorio correspodiente mediante una pipe
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-	@echo "Compiling: $<"
-	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
+	printf "$(BLUE)Compiling: $< $(NC)"
+	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
+	echo "$(GREEN) Done! $(NC)"
 
-# Crear directorio temporal para los obj
+bonus: $(OBJ_BONUS) libft
+	$(AR) $(NAME) $(OBJ_BONUS)
+	echo "$(GREEN)libftprintf bonus compiled!$(NC)"
+
+$(OBJ_DIR)%.o: $(SRC_DIR_BONUS)%.c | $(OBJF)
+	printf "$(BLUE)Compiling: $< $(NC)"
+	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
+	echo "$(GREEN) Done! $(NC)"
+
 $(OBJF):
-	@mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 
-# Eliminar temporales
+libft:
+	echo "$(PURPLE)Compiling libft...$(NC)"
+	make -C ./libft
+	cp libft/libft.a $(NAME)
+	echo "$(GREEN)Libft compiled!$(NC)"
+
+test:
+	echo "$(PURPLE)Compiling and executing test...$(NC)"
+	$(CC) $(CFLAGS) -I $(INC) main.c $(NAME) -o $(EXECUTABLE)
+	./$(EXECUTABLE)
+
 clean:
-	@make clean -C ./libft
-	@$(RM) -r $(OBJ_DIR)
-	@echo "Objects and directory cleaned!"
+	make clean -C ./libft
+	$(RM) -r $(OBJ_DIR)
+	echo "$(RED)Objects and directory cleaned! $(NC)"
 
-# Eliminar temporales y ejecutable
 fclean: clean
-	@make fclean -C ./libft
-	@$(RM) $(NAME)
-	@echo "Executable cleaned!"
+	make fclean -C ./libft
+	$(RM) $(NAME) $(EXECUTABLE)
+	echo "$(RED)Executable cleaned! $(NC)"
 
 re: fclean all
 
 norm:
 	@norminette $(SRC) $(INC)
 
-.PHONY: all clean fclean re
+.PHONY: all bonus libft test clean fclean re

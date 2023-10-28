@@ -1,6 +1,17 @@
 # Normbre del ejecutable
 NAME = libft.a
 
+# Colores
+NC = \033[0m
+BLACK = \033[0;30m
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+BLUE = \033[0;34m
+PURPLE = \033[0;35m
+CYAN = \033[0;36m
+WHITE = \033[0;37m
+
 # Directorios
 SRC_DIR = srcs/
 OBJ_DIR = objs/
@@ -31,23 +42,20 @@ AR = ar rcs
 # REGLAS #
 all: $(NAME)
 
-# Compilar conjuntamente
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
 
-# Compilar objetos individualmente y meterlos al directorio correspodiente mediante una pipe
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
+	printf "$(BLUE)Compiling: $< $(NC)"
 	@$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
+	echo "$(GREEN) Done! $(NC)"
 
-# Crear directorio temporal para los obj
 $(OBJF):
 	@mkdir -p $(OBJ_DIR)
 
-# Eliminar temporales
 clean:
 	@$(RM) -r $(OBJ_DIR)
 
-# Eliminar temporales y ejecutable
 fclean: clean
 	@$(RM) $(NAME)
 

@@ -61,11 +61,6 @@ void	ft_putnbr_base(unsigned int nbr, char *base, int *len)
 {
 	size_t	l;
 
-	if (nbr < 0)
-	{
-		nbr = -nbr;
-		ft_putchar('-', len);
-	}
 	l = ft_strlen(base);
 	if (nbr >= l)
 	{
