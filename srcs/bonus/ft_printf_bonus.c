@@ -10,17 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
+
+void	ft_print_nodes(t_node* head)
+{
+	int	i;
+
+	i = 0;
+	while(head)
+	{
+		printf("Node %02dº: %s\n", i++, head->full_content);
+		head = head->next;
+	}
+}
 
 void	ft_push_back(t_node** head, t_node* node)
 {
-	t_node	temp;
+	t_node*	temp;
 
-	temp = *head;
 	if (!*head)
-		head = node;
+		*head = node;
 	else
 	{
+		temp = *head;
 		while (temp->next)
 			temp = temp->next;
 		temp->next = node;
@@ -33,7 +45,27 @@ t_node*	ft_new_node(char * content)
 
 	node = malloc(sizeof(t_node));
 	node->full_content = content;
+	node->next = NULL;
 	return (node);
+}
+
+int	ft_format_lenght(char const *format)
+{
+	int i;
+	char*	values;
+
+	i = 0;
+	values = "cspdiuxX";
+	if (ft_strlen(format) >= 2 && format[1] == '%')
+		return (2);
+	while (format[i])
+	{
+		if (!ft_strrchr(values, format[i]))
+			return (i);
+		i++;
+	}
+	printf("lenght = %d\n", i);
+	return (i);
 }
 
 t_node*	ft_create_nodes(char const *s)
@@ -44,37 +76,34 @@ t_node*	ft_create_nodes(char const *s)
 
 	start = 0;
 	end = 0;
+	head = NULL;
+	
 	while (s[end])
 	{
 		if (s[end] == '%')
 		{
-			ft_push_back(&head, ft_new_node(ft_substr(s, start, end-1)));
+			ft_push_back(&head, ft_new_node(ft_substr(s, start, end)));
 			start = end;
+			ft_push_back(&head, ft_new_node(ft_substr(s, start, ft_format_lenght(&s[start]))));
+			start = end+1;
 		}
 		end++;
 	}
+	ft_push_back(&head, ft_new_node(ft_substr(s, start, end)));
+	ft_print_nodes(head);
+	return (head);
 }
 
 int	ft_printf(char const *s, ...)
 {
 	va_list	ptr;
 	int		len;
-	int		i;
+	//int		i;
 
 	len = 0;
-	i = 0;
+	//i = 0;
 	va_start(ptr, s);
-	while (s[i])
-	{
-		if (s[i] == '%')
-		{
-			ft_convert(ptr, &s[i + 1], &len);
-			i++;
-		}
-		else
-			len += write(1, &s[i], 1);
-		i++;
-	}
+	ft_create_nodes(s);
 	va_end(ptr);
 	return (len);
 }
