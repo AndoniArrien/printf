@@ -40,17 +40,17 @@ void	ft_print_node(void *content)
 	else
 	{
 		ft_putstr_fd("  | la ('-') = [", 1);
-		//ft_putstr_fd(ft_itoa(node->flags.left_align), 1);
+		ft_putnbr_fd(node->flags.left_align, 1);
 		ft_putstr_fd("] | ra ('0') = [", 1);
-		//ft_putstr_fd(ft_itoa(node->flags.right_align), 1);
+		ft_putnbr_fd(node->flags.right_align, 1);
 		ft_putstr_fd("] | pr ('.') = [", 1);
-		//ft_putstr_fd(ft_itoa(node->flags.precision), 1);
+		ft_putnbr_fd(node->flags.precision, 1);
 		ft_putstr_fd("] | al ('#') = [", 1);
-		//ft_putstr_fd(ft_itoa(node->flags.alternate), 1);
+		ft_putnbr_fd(node->flags.alternate, 1);
 		ft_putstr_fd("] | sg ('+') = [", 1);
-		//ft_putstr_fd(ft_itoa(node->flags.sign), 1);
+		ft_putnbr_fd(node->flags.sign, 1);
 		ft_putstr_fd("] | sp (' ') = [", 1);
-		//ft_putstr_fd(ft_itoa(node->flags.space), 1);
+		ft_putnbr_fd(node->flags.space, 1);
 		ft_putstr_fd("] |\n", 1);
 	}
 }
