@@ -32,7 +32,7 @@ OBJ_BONUS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES_BONUS)))
 
 # Comandos
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra $(if $(DEBUG),-fsanitize=address,)
 RM = rm -f
 AR = ar rcs
 
@@ -42,7 +42,7 @@ AR = ar rcs
 
 all: $(NAME)
 
-$(NAME): $(OBJ) libft
+$(NAME): $(OBJ) libft clean_bonus
 	$(AR) $(NAME) $(OBJ)
 	echo "$(GREEN)libftprintf compiled!$(NC)"
 
@@ -51,7 +51,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 	echo "$(GREEN) Done! $(NC)"
 
-bonus: $(OBJ_BONUS) libft
+bonus: $(OBJ_BONUS) libft clean_mandatory
 	$(AR) $(NAME) $(OBJ_BONUS)
 	echo "$(GREEN)libftprintf bonus compiled!$(NC)"
 
@@ -74,10 +74,22 @@ test:
 	$(CC) $(CFLAGS) -I $(INC) main.c $(NAME) -o $(EXECUTABLE)
 	./$(EXECUTABLE)
 
-clean:
+clean_mandatory:
+	if [ -e "$(OBJ_DIR)ft_printf.o" ]; then \
+		$(RM) -r $(OBJ); \
+		echo "$(YELLOW)Objects from mandatory part cleaned! $(NC)"; \
+	fi
+
+clean_bonus:
+	if [ -e "$(OBJ_DIR)ft_printf_bonus.o" ]; then \
+		$(RM) -r $(OBJ_BONUS); \
+		echo "$(YELLOW)Objects from bonus part cleaned! $(NC)"; \
+	fi
+
+clean: clean_mandatory clean_bonus
 	make clean -C ./libft
-	$(RM) -r $(OBJ_DIR)
-	echo "$(RED)Objects and directory cleaned! $(NC)"
+	echo "$(YELLOW)Objects from libft cleaned! $(NC)"
+	echo "$(RED)All objects cleaned! $(NC)"
 
 fclean: clean
 	make fclean -C ./libft
@@ -87,6 +99,6 @@ fclean: clean
 re: fclean all
 
 norm:
-	@norminette $(SRC) $(INC)
+	norminette $(SRC) $(INC)
 
-.PHONY: all bonus libft test clean fclean re
+.PHONY: all bonus libft test clean_mandatory clean_bonus clean fclean re
