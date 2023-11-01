@@ -31,7 +31,7 @@ typedef struct s_flags {
 typedef struct s_node {
 	char *			full_content;
 	int				is_valid;
-	int				is_formated;
+	int				is_formatted;
 	t_flags			flags;
 } t_node;
 
@@ -39,7 +39,9 @@ typedef struct s_node {
 int		ft_printf(char const *s, ...);
 
 /*-FT_PRINTF_UTILS_BONUS-*/
+int		ft_is_valid_conversion(char c);
 void	ft_print_node(void *content);
-void	ft_fill_flags(void *content);
+void	ft_set_flags(t_node* node, char* node_flags);
+void	ft_fill_node_data(void *content);
 
 #endif
