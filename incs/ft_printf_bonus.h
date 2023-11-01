@@ -30,7 +30,6 @@ typedef struct s_flags {
 
 typedef struct s_node {
 	char *			full_content;
-	char *			format;
 	t_flags			flags;
 	struct s_node *	next;
 } t_node;

@@ -1,52 +1,15 @@
 #include "ft_printf_bonus.h"
 
-void	ft_push_back(t_node** head, t_node* node)
+void	ft_print_node(void *content)
 {
-	t_node*	temp;
+	t_node *node = (t_node *)content;
 
-	if (!*head)
-		*head = node;
-	else
-	{
-		temp = *head;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = node;
-	}
+	printf("Node : %s\n", node->full_content);
 }
 
-t_node*	ft_new_node(char * content)
+t_list*	ft_create_nodes(char const *s)
 {
-	t_node* node;
-
-	node = malloc(sizeof(t_node));
-	node->full_content = content;
-	node->next = NULL;
-	return (node);
-}
-
-int	ft_format_lenght(char const *format)
-{
-	int i;
-	char*	values;
-
-	i = 0;
-	values = "cspdiuxX";
-	if (ft_strlen(format) >= 2 && format[1] == '%')
-		return (2);
-	while (format[i])
-	{
-		if (!ft_strrchr(values, format[i]))
-			return (i);
-		i++;
-	}
-	printf("lenght = %d\n", i);
-	return (i);
-}
-
-t_node*	ft_create_nodes(char const *s)
-{
-	t_node*	head;
+	t_list*	head;
 	int		start;
 	int		end;
 
@@ -60,14 +23,16 @@ t_node*	ft_create_nodes(char const *s)
 		{
 			if (end != 0 && s[end-1] == '%')
 				end++;
-			ft_push_back(&head, ft_new_node(ft_substr(s, start, end-start)));
+			t_node	*node = malloc(sizeof(t_node));
+			node->full_content = ft_substr(s, start, end-start);
+			ft_lstadd_back(&head, ft_lstnew(node));
 			start = end;
 			if (!s[end])
 				break;
 		}
 		end++;
 	}
-	ft_print_nodes(head);
+	ft_lstiter(head, ft_print_node);
 	return (head);
 }
 
