@@ -1,28 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 12:18:07 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/10/15 11:57:32 by aarrien-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf_bonus.h"
-
-void	ft_print_nodes(t_node* head)
-{
-	int	i;
-
-	i = 0;
-	while(head)
-	{
-		printf("Node %02dº: %s\n", i++, head->full_content);
-		head = head->next;
-	}
-}
 
 void	ft_push_back(t_node** head, t_node* node)
 {
@@ -78,18 +54,19 @@ t_node*	ft_create_nodes(char const *s)
 	end = 0;
 	head = NULL;
 	
-	while (s[end])
+	while (1)
 	{
-		if (s[end] == '%')
+		if (s[end] == '%' || !s[end])
 		{
-			ft_push_back(&head, ft_new_node(ft_substr(s, start, end)));
+			if (end != 0 && s[end-1] == '%')
+				end++;
+			ft_push_back(&head, ft_new_node(ft_substr(s, start, end-start)));
 			start = end;
-			ft_push_back(&head, ft_new_node(ft_substr(s, start, ft_format_lenght(&s[start]))));
-			start = end+1;
+			if (!s[end])
+				break;
 		}
 		end++;
 	}
-	ft_push_back(&head, ft_new_node(ft_substr(s, start, end)));
 	ft_print_nodes(head);
 	return (head);
 }

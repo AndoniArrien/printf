@@ -30,10 +30,15 @@ typedef struct s_flags {
 
 typedef struct s_node {
 	char *			full_content;
+	char *			format;
 	t_flags			flags;
 	struct s_node *	next;
 } t_node;
 
+/*-FT_PRINTF_BONUS-*/
 int		ft_printf(char const *s, ...);
+
+/*-FT_PRINTF_UTILS_BONUS-*/
+void	ft_print_nodes(t_node* head);
 
 #endif
