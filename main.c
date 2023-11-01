@@ -3,6 +3,6 @@
 
 int main()
 {
-	ft_printf("Hola%%ddawdadsf ads fa sf %% %d %wa", 42);
+	ft_printf("Hola  %%ddawdadsf ads%0d fa sf %% % %d %%a%wd%", 42);
 	return (0);
 }
