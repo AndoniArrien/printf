@@ -32,7 +32,8 @@ OBJ_BONUS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES_BONUS)))
 
 # Comandos
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra $(if $(DEBUG),-fsanitize=address,)
+CFLAGS = -Wall -Werror -Wextra $(if $(SANI),-fsanitize=address,)
+VALGRIND = $(if $(VAL),valgrind --leak-check=full,)
 RM = rm -f
 AR = ar rcs
 
@@ -72,7 +73,7 @@ libft:
 test:
 	echo "$(PURPLE)Compiling and executing test...$(NC)"
 	$(CC) $(CFLAGS) -I $(INC) main.c $(NAME) -o $(EXECUTABLE)
-	./$(EXECUTABLE)
+	$(VALGRIND) ./$(EXECUTABLE)
 
 clean_mandatory:
 	if [ -e "$(OBJ_DIR)ft_printf.o" ]; then \
@@ -102,4 +103,4 @@ re: fclean all
 norm:
 	norminette $(SRC) $(SRC_BONUS) $(INC)
 
-.PHONY: all bonus libft test clean_mandatory clean_bonus clean fclean re
+.PHONY: all bonus libft test clean_mandatory clean_bonus clean fclean re norm

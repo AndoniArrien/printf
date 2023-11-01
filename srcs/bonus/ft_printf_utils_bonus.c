@@ -18,6 +18,8 @@ int		ft_is_valid_flag(char c)
 	return (0);
 }
 
+//void	ft_delete_node(void *content)
+
 void	ft_print_node(void *content)
 {
 	t_node*	node = (t_node *)content;
@@ -46,5 +48,3 @@ void	ft_print_node(void *content)
 		ft_putstr_fd("] |\n", 1);
 	}
 }
-
-
