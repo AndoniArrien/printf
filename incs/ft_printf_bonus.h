@@ -41,6 +41,7 @@ int		ft_printf(char const *s, ...);
 /*-FT_PRINTF_UTILS_BONUS-*/
 int		ft_is_valid_conversion(char c);
 int		ft_is_valid_flag(char c);
+void	ft_delete_node(void *content);
 void	ft_print_node(void *content);
 
 /*-FT_FLAGS_BONUS-*/
