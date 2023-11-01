@@ -41,6 +41,5 @@ t_list*	ft_create_nodes(char const *s)
 			end++;
 	}
 	ft_lstiter(head, ft_fill_node_data);
-	ft_lstiter(head, ft_print_node);
 	return (head);
 }
