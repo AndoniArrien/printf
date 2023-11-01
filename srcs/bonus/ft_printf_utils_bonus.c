@@ -22,27 +22,70 @@ void	ft_print_node(void *content)
 		ft_putstr_fd(" Node is not formatted\n", 1);
 	else
 	{
-		ft_putstr_fd(" la = ", 1);
+		ft_putstr_fd("  | la ('-') = [", 1);
 		ft_putstr_fd(ft_itoa(node->flags.left_align), 1);
-		ft_putstr_fd(" ra = ", 1);
+		ft_putstr_fd("] | ra ('0') = [", 1);
 		ft_putstr_fd(ft_itoa(node->flags.right_align), 1);
-		ft_putstr_fd(" pr = ", 1);
+		ft_putstr_fd("] | pr ('.') = [", 1);
 		ft_putstr_fd(ft_itoa(node->flags.precision), 1);
-		ft_putstr_fd(" al = ", 1);
+		ft_putstr_fd("] | al ('#') = [", 1);
 		ft_putstr_fd(ft_itoa(node->flags.alternate), 1);
-		ft_putstr_fd(" sg = ", 1);
+		ft_putstr_fd("] | sg ('+') = [", 1);
 		ft_putstr_fd(ft_itoa(node->flags.sign), 1);
-		ft_putstr_fd(" sp = ", 1);
+		ft_putstr_fd("] | sp (' ') = [", 1);
 		ft_putstr_fd(ft_itoa(node->flags.space), 1);
-		ft_putstr_fd("\n", 1);
+		ft_putstr_fd("] |\n", 1);
 	}
+}
+
+char*	ft_extract_flag_value(char* str)
+{
+	int		i;
+	char*	value;
+
+	i = 0;
+	while (ft_isdigit(str[i]))
+		i++;
+	value = ft_substr(str, 0, i);
+	return (value);
+}
+
+void	ft_insert_flag_value(t_node* node, char flag, int value)
+{
+	if (flag == '-')
+		node->flags.left_align = value;
+	else if (flag == '0')
+		node->flags.right_align = value;
+	else if (flag == '.')
+		node->flags.precision = value;
+	else if (flag == '#')
+		node->flags.alternate = value;
+	else if (flag == '+')
+		node->flags.sign = value;
+	else if (flag == ' ')
+		node->flags.space = value;
 }
 
 void	ft_set_flags(t_node* node, char* node_flags)
 {
-	(void)node_flags;
-	(void)node;
-	printf("setting node flags");
+	int	i;
+	char*	value;
+	char	valid_flags[] = "-0.#+ ";
+
+	i = 0;
+	while (node_flags[i])
+	{
+		if (ft_strchr(valid_flags, node_flags[i])) {
+			if (i == (int)ft_strlen(node_flags)-1)
+				break;
+			value = ft_extract_flag_value(&node_flags[i+1]);
+			ft_insert_flag_value(node, node_flags[i], ft_atoi(value));
+			i += ft_strlen(value);
+			free(value);
+		}
+		if (node_flags[i])
+			i++;
+	}
 }
 
 void	ft_fill_node_data(void *content)
