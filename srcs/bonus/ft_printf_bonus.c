@@ -23,11 +23,11 @@ t_list*	ft_create_nodes(char const *s)
 	head = NULL;
 	while (s[end])
 	{
-		if (!s[end+1] || s[end] == '%' || (ft_is_valid_conversion(s[end]) && s[start] == '%'))
+		if (!s[end+1] || s[end] == '%' || (ft_strchr(CONVERSIONS, s[end]) && s[start] == '%'))
 		{
 			t_node	*node = malloc(sizeof(t_node));
 			ft_init_node(node);
-			if (!s[end+1] || s[end-1] == '%' || (ft_is_valid_conversion(s[end]) && s[start] == '%')) {
+			if (!s[end+1] || s[end-1] == '%' || (ft_strchr(CONVERSIONS, s[end]) && s[start] == '%')) {
 				node->full_content = ft_substr(s, start, end-start+1);
 				end++;
 			}

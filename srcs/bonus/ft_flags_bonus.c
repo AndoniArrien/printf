@@ -1,31 +1,36 @@
 #include "ft_printf_bonus.h"
 
-char*	ft_extract_flag_value(char* str)
+char*	ft_extract_flag_value(char flag, char* str)
 {
 	int		i;
 	char*	value;
 
 	i = 0;
-	while (ft_isdigit(str[i]))
-		i++;
-	value = ft_substr(str, 0, i);
+	if (ft_strchr("-0.+ ", flag))
+	{
+		while (ft_isdigit(str[i]))
+			i++;
+		value = ft_substr(str, 0, i);
+	}
+	else if (flag == '#')
+		value = ft_substr(str, 0, 1);
 	return (value);
 }
 
-void	ft_insert_flag_value(t_node* node, char flag, int value)
+void	ft_insert_flag_value(t_node* node, char flag, char* value)
 {
 	if (flag == '-')
-		node->flags.left_align = value;
+		node->flags.left_align = ft_atoi(value);
 	else if (flag == '0')
-		node->flags.right_align = value;
+		node->flags.right_align = ft_atoi(value);
 	else if (flag == '.')
-		node->flags.precision = value;
+		node->flags.precision = ft_atoi(value);
 	else if (flag == '#')
-		node->flags.alternate = value;
+		node->flags.alternate = *value;
 	else if (flag == '+')
-		node->flags.sign = value;
+		node->flags.sign = 1;
 	else if (flag == ' ')
-		node->flags.space = value;
+		node->flags.space = 1;
 }
 
 void	ft_set_flags(t_node* node, char* node_flags)
@@ -36,11 +41,11 @@ void	ft_set_flags(t_node* node, char* node_flags)
 	i = 0;
 	while (node_flags[i])
 	{
-		if (ft_is_valid_flag(node_flags[i])) {
+		if (ft_strchr(FLAGS, node_flags[i])) {
 			if (i == (int)ft_strlen(node_flags)-1)
 				break;
-			value = ft_extract_flag_value(&node_flags[i+1]);
-			ft_insert_flag_value(node, node_flags[i], ft_atoi(value));
+			value = ft_extract_flag_value(node_flags[i], &node_flags[i+1]);
+			ft_insert_flag_value(node, node_flags[i], value);
 			i += ft_strlen(value);
 			free(value);
 		}
@@ -61,7 +66,7 @@ void	ft_fill_node_data(void *content)
 	if (ft_strchr(node_content, '%') && ft_strchr(node_content, '%') == ft_strrchr(node_content, '%') && lenght > 1)
 	{
 		node->is_formatted = 1;
-		if (ft_is_valid_conversion(node_content[lenght-1]))
+		if (ft_strchr(CONVERSIONS, node_content[lenght-1]))
 			node->is_valid = 1;
 		if (lenght > 2)
 		{
