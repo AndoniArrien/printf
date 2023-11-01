@@ -40,7 +40,12 @@ int		ft_printf(char const *s, ...);
 
 /*-FT_PRINTF_UTILS_BONUS-*/
 int		ft_is_valid_conversion(char c);
+int		ft_is_valid_flag(char c);
 void	ft_print_node(void *content);
+
+/*-FT_FLAGS_BONUS-*/
+char*	ft_extract_flag_value(char* str);
+void	ft_insert_flag_value(t_node* node, char flag, int value);
 void	ft_set_flags(t_node* node, char* node_flags);
 void	ft_fill_node_data(void *content);
 
