@@ -52,4 +52,8 @@ void	ft_insert_flag_value(t_node* node, char flag, char* value);
 void	ft_set_flags(t_node* node, char* node_flags);
 void	ft_fill_node_data(void *content);
 
+/*-FT_LIST_BONUS-*/
+void	ft_init_node(t_node* node);
+t_list*	ft_create_nodes(char const *s);
+
 #endif

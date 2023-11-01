@@ -22,7 +22,7 @@ INC = incs
 
 # Ficheros
 SRC_FILES = ft_printf ft_printf_utils ft_print_unsigned ft_print_ptr
-SRC_FILES_BONUS = ft_printf_bonus ft_printf_utils_bonus ft_flags_bonus
+SRC_FILES_BONUS = ft_printf_bonus ft_printf_utils_bonus ft_flags_bonus ft_list_bonus
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
