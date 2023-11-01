@@ -12,10 +12,8 @@ t_list*	ft_create_nodes(char const *s)
 	head = NULL;
 	while (s[end])
 	{
-		printf("%d %d == start(%c) end(%c)\n", start, end, s[start], s[end]);
 		if (!s[end+1] || s[end] == '%' || (ft_strchr(valid_conversions, s[end]) && s[start] == '%'))
 		{
-			printf("entra\n");
 			t_node	*node = malloc(sizeof(t_node));
 			if (!s[end+1] || s[end-1] == '%' || (ft_strchr(valid_conversions, s[end]) && s[start] == '%')) {
 				node->full_content = ft_substr(s, start, end-start+1);
