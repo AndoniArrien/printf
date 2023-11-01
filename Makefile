@@ -76,18 +76,19 @@ test:
 
 clean_mandatory:
 	if [ -e "$(OBJ_DIR)ft_printf.o" ]; then \
-		$(RM) -r $(OBJ); \
+		$(RM) $(OBJ); \
 		echo "$(YELLOW)Objects from mandatory part cleaned! $(NC)"; \
 	fi
 
 clean_bonus:
 	if [ -e "$(OBJ_DIR)ft_printf_bonus.o" ]; then \
-		$(RM) -r $(OBJ_BONUS); \
+		$(RM) $(OBJ_BONUS); \
 		echo "$(YELLOW)Objects from bonus part cleaned! $(NC)"; \
 	fi
 
 clean: clean_mandatory clean_bonus
 	make clean -C ./libft
+	$(RM) -r $(OBJ_DIR)
 	echo "$(YELLOW)Objects from libft cleaned! $(NC)"
 	echo "$(RED)All objects cleaned! $(NC)"
 
@@ -99,6 +100,6 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette $(SRC) $(INC)
+	norminette $(SRC) $(SRC_BONUS) $(INC)
 
 .PHONY: all bonus libft test clean_mandatory clean_bonus clean fclean re
