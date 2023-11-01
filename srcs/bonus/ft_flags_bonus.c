@@ -67,7 +67,10 @@ void	ft_fill_node_data(void *content)
 	{
 		node->is_formatted = 1;
 		if (ft_strchr(CONVERSIONS, node_content[lenght-1]))
+		{
+			node->conversion = node_content[lenght-1];
 			node->is_valid = 1;
+		}
 		if (lenght > 2)
 		{
 			node_flags = ft_substr(node_content, 1, lenght-2);

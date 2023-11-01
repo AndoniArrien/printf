@@ -4,6 +4,7 @@ void	ft_init_node(t_node* node)
 {
 	node->is_valid = 0;
 	node->is_formatted = 0;
+	node->conversion = 0;
 	node->flags.left_align = 0;
 	node->flags.right_align = 0;
 	node->flags.precision = 0;
@@ -40,6 +41,6 @@ t_list*	ft_create_nodes(char const *s)
 			end++;
 	}
 	ft_lstiter(head, ft_fill_node_data);
-	//ft_lstiter(head, ft_print_node);
+	ft_lstiter(head, ft_print_node);
 	return (head);
 }

@@ -3,6 +3,6 @@
 
 int main()
 {
-	ft_printf("a%+14-12#Z07d", 42);
+	ft_printf("a%+-12#Z07d", 42);
 	return (0);
 }

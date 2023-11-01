@@ -34,6 +34,7 @@ typedef struct s_flags {
 
 typedef struct s_node {
 	char *	full_content;
+	char	conversion;
 	int		is_valid;
 	int		is_formatted;
 	t_flags	flags;

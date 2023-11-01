@@ -14,7 +14,9 @@ void	ft_print_node(void *content)
 
 	ft_putstr_fd("[", 1);
 	ft_putstr_fd(node->full_content, 1);
-	ft_putstr_fd("] :", 1);
+	ft_putstr_fd("](", 1);
+	ft_putchar_fd(node->conversion, 1);
+	ft_putstr_fd(") :", 1);
 	if (!node->is_valid)
 		ft_putstr_fd(" Node is not valid\n", 1);
 	else if (!node->is_formatted)
