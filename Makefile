@@ -20,9 +20,9 @@ OBJ_DIR = objs/
 OBJF = objs
 INC = incs
 
-# Ficheros
+# Archivos
 SRC_FILES = ft_printf ft_printf_utils ft_print_unsigned ft_print_ptr
-SRC_FILES_BONUS = ft_printf_bonus ft_printf_utils_bonus ft_store_flags_bonus ft_list_bonus ft_process_conversions
+SRC_FILES_BONUS = ft_printf_bonus ft_printf_utils_bonus ft_store_flags_bonus ft_list_bonus ft_process_conversions ft_process_flags
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

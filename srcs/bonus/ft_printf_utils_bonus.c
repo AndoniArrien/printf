@@ -1,12 +1,17 @@
 #include "ft_printf_bonus.h"
 
+void	ft_putchar_len(char c, int* len)
+{
+	*len += write(1, &c, 1);
+}
+
 void	ft_putstr_len(char* str, int* len)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
-		*len += write(1, &str[i++], 1);
+		ft_putchar_len(str[i++], len);
 }
 
 void	ft_delete_node(void *content)

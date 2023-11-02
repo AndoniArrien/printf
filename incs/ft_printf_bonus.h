@@ -45,6 +45,7 @@ void	ft_process(va_list ptr, t_list* head, int *len);
 int		ft_printf(char const *s, ...);
 
 /*-FT_PRINTF_UTILS_BONUS-*/
+void	ft_putchar_len(char c, int* len);
 void	ft_putstr_len(char* str, int* len);
 void	ft_delete_node(void *content);
 void	ft_print_node(void *content);
@@ -66,5 +67,9 @@ void	ft_process_p(t_node* node, unsigned long long int p, int* len);
 void	ft_process_di(t_node* node, int di, int* len);
 void	ft_process_u(t_node* node, unsigned int u, int* len);
 void	ft_process_xX(t_node* node, int xX, int* len);
+
+/*-FT_PROCESS_FLAGS-*/
+void	ft_process_left_align(t_node* node, int* index, int* len);
+void	ft_process_precision(t_node* node, void* content, int* index, int* len);
 
 #endif

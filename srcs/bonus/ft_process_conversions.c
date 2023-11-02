@@ -5,19 +5,26 @@
 // FLAGS: "-"
 void	ft_process_c(t_node* node, char c, int* len)
 {
-	(void)node;
-	(void)c;
-	(void)len;
-	printf("Processing c...\n");
+	int	i;
+
+	i = 0;
+	i += 1;
+	ft_putchar_len(c, len);
+
+	ft_process_left_align(node, &i, len);
 }
 
 // FLAGS: "-."
 void	ft_process_s(t_node* node, char* s, int* len)
 {
-	(void)node;
-	(void)s;
-	(void)len;
-	printf("Processing s...\n");
+	int	i;
+
+	i = 0;
+	ft_process_precision(node, s, &i, len);
+	if (node->flags.precision == 0)
+		i += ft_strlen(s);
+
+	ft_process_left_align(node, &i, len);
 }
 
 // FLAGS: "-"
