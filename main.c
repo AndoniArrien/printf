@@ -3,6 +3,8 @@
 
 int main()
 {
-	ft_printf("%+-12#Z07d w", 42);
+	int i = -42;
+	i = printf("%x", i);
+	printf("|\nRETURN: %d\n", i);
 	return (0);
 }

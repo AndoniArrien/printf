@@ -1,70 +1,10 @@
 #include "ft_printf_bonus.h"
 
-void	ft_putstr_len(char* str, int* len)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		*len += write(1, &str[i++], 1);
-}
-
-void	ft_process_c(t_node* node, char c, int* len)
-{
-	(void)node;
-	(void)c;
-	(void)len;
-	printf("Processing c...\n");
-}
-
-void	ft_process_s(t_node* node, char* s, int* len)
-{
-	(void)node;
-	(void)s;
-	(void)len;
-	printf("Processing s...\n");
-}
-
-void	ft_process_p(t_node* node, unsigned long long int p, int* len)
-{
-	(void)node;
-	(void)p;
-	(void)len;
-	printf("Processing p...\n");
-}
-
-void	ft_process_di(t_node* node, int di, int* len)
-{
-	(void)node;
-	(void)di;
-	(void)len;
-	printf("Processing di...\n");
-}
-
-void	ft_process_u(t_node* node, unsigned int u, int* len)
-{
-	(void)node;
-	(void)u;
-	(void)len;
-	printf("Processing u...\n");
-}
-
-void	ft_process_xX(t_node* node, int xX, int* len)
-{
-	(void)node;
-	(void)xX;
-	(void)len;
-	printf("Processing xX...\n");
-}
-
-
 void	ft_process(va_list ptr, t_list* head, int *len)
 {
 	char	conversion;
 	t_node*	node;
 
-	(void)ptr;
-	(void)len;
 	while (head)
 	{
 		node = ((t_node *)head->content);

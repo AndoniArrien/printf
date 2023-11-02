@@ -28,13 +28,17 @@ t_list*	ft_create_nodes(char const *s)
 		{
 			t_node	*node = malloc(sizeof(t_node));
 			ft_init_node(node);
-			if (!s[end+1] || s[end-1] == '%' || (ft_strchr(CONVERSIONS, s[end]) && s[start] == '%')) {
+			if (!s[end+1] || s[end-1] == '%' || (ft_strchr(CONVERSIONS, s[end]) && s[start] == '%'))
+			{
 				node->full_content = ft_substr(s, start, end-start+1);
 				end++;
 			}
 			else
 				node->full_content = ft_substr(s, start, end-start);
-			ft_lstadd_back(&head, ft_lstnew(node));
+			if (ft_strlen(node->full_content) != 0)
+				ft_lstadd_back(&head, ft_lstnew(node));
+			else
+				ft_delete_node(node);
 			start = end;
 		}
 		if (s[end])

@@ -1,5 +1,14 @@
 #include "ft_printf_bonus.h"
 
+void	ft_putstr_len(char* str, int* len)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		*len += write(1, &str[i++], 1);
+}
+
 void	ft_delete_node(void *content)
 {
 	t_node*	node = (t_node *)content;
