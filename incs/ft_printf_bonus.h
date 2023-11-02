@@ -47,6 +47,7 @@ int		ft_printf(char const *s, ...);
 /*-FT_PRINTF_UTILS_BONUS-*/
 void	ft_putchar_len(char c, int* len);
 void	ft_putstr_len(char* str, int* len);
+void	ft_putnbr_base_len(unsigned int nbr, char *base, int *len);
 void	ft_delete_node(void *content);
 void	ft_print_node(void *content);
 

@@ -14,6 +14,20 @@ void	ft_putstr_len(char* str, int* len)
 		ft_putchar_len(str[i++], len);
 }
 
+void	ft_putnbr_base_len(unsigned int nbr, char *base, int *len)
+{
+	size_t	l;
+
+	l = ft_strlen(base);
+	if (nbr >= l)
+	{
+		ft_putnbr_base_len(nbr / l, base, len);
+		ft_putnbr_base_len(nbr % l, base, len);
+	}
+	else
+		ft_putchar_len(base[nbr], len);
+}
+
 void	ft_delete_node(void *content)
 {
 	t_node*	node = (t_node *)content;
